@@ -4,6 +4,7 @@ services:
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
       - ./public:/public
+      - ./logs/nginx:/var/log/nginx # ホスト側にログをマウントする
     ports:
       - "80:80"
     links:
