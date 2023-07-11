@@ -4,7 +4,7 @@ services:
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
       - ./public:/public
-      - ./logs/nginx:/var/log/nginx # ホスト側にログをマウントする
+      # - ./logs/nginx:/var/log/nginx # ホスト側にログをマウントする
       - ./etc/nginx/nginx-logrotate.sh:/nginx-logrotate.sh
     ports:
       - "80:80"
@@ -43,7 +43,7 @@ services:
       - mysql:/var/lib/mysql
       - ./etc/my.cnf:/etc/my.cnf
       - ./sql:/docker-entrypoint-initdb.d
-      - ./logs/mysql:/var/log/mysql
+      #- ./logs/mysql:/var/log/mysql
     ports:
       - "3306:3306"
     deploy:
