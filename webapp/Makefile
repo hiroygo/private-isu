@@ -1,3 +1,7 @@
+.PHONY: build
+build:
+	docker compose build
+
 .PHONY: up
 up:
 	docker compose up
@@ -18,4 +22,4 @@ stats:
 test:
 	-docker compose exec mysql rm /var/log/mysql/mysql-slow.log
 	docker compose exec mysql mysqladmin -uroot -proot flush-logs
-	ab -c 1 -t 30 http://localhost/
+	ab -c 4 -t 30 http://localhost/
