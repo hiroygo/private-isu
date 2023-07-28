@@ -23,3 +23,10 @@ test:
 	-docker compose exec mysql rm /var/log/mysql/mysql-slow.log
 	docker compose exec mysql mysqladmin -uroot -proot flush-logs
 	ab -c 4 -t 30 http://localhost/
+
+.PHONY: alp
+alp:
+	docker compose exec nginx cat /var/log/nginx/app_access.log | alp json \
+		--sort sum -r \
+		-m "/posts/[0-9]+,/@\w+" \
+		-o count,method,uri,min,avg,max,sum
