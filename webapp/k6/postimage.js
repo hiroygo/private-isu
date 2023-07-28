@@ -26,7 +26,7 @@ export default function() {
         body: "Posted by k6",
         csrf_token: token,
     });
-    check(comment_res, {
+    check(post_res, {
         "is status 200": (r) => r.status === 200,
     });
 }
