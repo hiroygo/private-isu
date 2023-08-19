@@ -19,4 +19,8 @@ sub vcl_recv {
 	# set req.http.host = "example.com";
 	# set the backend
 	set req.backend_hint = d.backend("app");
+
+	if (req.url ~ "\.jpg") {
+        unset req.http.Cookie;
+    }
 }
