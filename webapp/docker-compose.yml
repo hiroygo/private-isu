@@ -9,7 +9,16 @@ services:
     ports:
       - "80:80"
     links:
-      - app
+      - varnish
+
+  varnish:
+    image: varnish
+    tmpfs:
+      - /var/lib/varnish/varnishd:exec
+    volumes:
+      - ./etc/varnish:/etc/varnish
+    links:
+       - app
 
   app:
     # Go実装の場合は golang/ PHP実装の場合は php/
@@ -32,6 +41,8 @@ services:
         limits:
           cpus: '2'
           memory: 1g
+    ports:
+      - "8080:8080"
 
   mysql:
     image: mysql:8.0
