@@ -4,6 +4,7 @@ build:
 
 .PHONY: up
 up:
+	docker compose rm -f varnish
 	docker compose up
 
 .PHONY: nginx-logrotate
